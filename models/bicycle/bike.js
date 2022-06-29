@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var BycicleSchema = new Schema({
+        picture: {type: String, require: true},
         name: {type: String, require: true, unique: true, minLength: 5},
         ref: {type: String, require: true, unique: true, minLength: 5},
         brand: {type: Schema.Types.ObjectId, ref: 'brand'},

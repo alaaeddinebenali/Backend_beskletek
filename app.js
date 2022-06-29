@@ -15,7 +15,9 @@ const genderUsersRouter = require('./routes/bicycle/genderUsers');
 const wheelDiameterRouter = require('./routes/bicycle/wheelDiameterBikes');
 const bikesRouter = require('./routes/bicycle/Bikes');
 const rentsRouter = require('./routes/rent/rents');
-const dbConfig = require('./config/db')
+const brandsRouter = require('./routes/bicycle/brands');
+const dbConfig = require('./config/db');
+const bodyParser = require('body-parser');
 
 var app = express();
 const mongoose = require('mongoose')
@@ -23,8 +25,8 @@ var cors = require('cors')
 app.set(cors())
 
 // view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -40,6 +42,7 @@ app.use('/api/gender_users_bike', genderUsersRouter);
 app.use('/api/wheel_diameter', wheelDiameterRouter);
 app.use('/api/bike', bikesRouter);
 app.use('/api/rent', rentsRouter);
+app.use('/api/brand', brandsRouter);
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 //app.use('/contact', contactsRouter);

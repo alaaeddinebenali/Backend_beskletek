@@ -7,7 +7,7 @@ var RentSchema = new Schema({
         start_time: {type: Number, require: true, min: 0, max: 24},
         end_date_reservation: {type: Schema.Types.Date, require: true},
         end_time: {type: Number, require: true, min: 0, max: 24},
-        bicycle: {type: Schema.Types.ObjectId, ref: 'bicycle'},
+        bicycle: {type: Schema.Types.ObjectId, ref: 'bycicles'},
         status: {type: String, require: true, enu: ['pending', 'in progress', 'confirmed', 'blocked']}
     },
     {

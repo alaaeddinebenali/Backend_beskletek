@@ -26,6 +26,7 @@ router.get('/:bikeId', (req, res) => {
 router.post('/add', (req, res) => {
 
     var bike = new Bike({
+        picture: req.body.picture,
         name: req.body.name,
         ref: req.body.ref,
         brand: req.body.brand,
@@ -53,6 +54,7 @@ router.put('/update', (req, res) => {
 
     var bikeId = req.body.bikeId;
     Bike.findByIdAndUpdate(bikeId, {
+        picture: req.body.picture,
         name: req.body.name,
         ref: req.body.ref,
         brand: req.body.brand,

@@ -4,10 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var contactsRouter = require('./routes/contact');
-var dbConfig = require('./config/db')
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
+// var contactsRouter = require('./routes/contact');
+const colorBikeRouter = require('./routes/bicycle/colorBikes');
+const sizeBikesRouter = require('./routes/bicycle/sizeBikes');
+const materialBikesRouter = require('./routes/bicycle/materialBikes');
+const typeBikesRouter = require('./routes/bicycle/typeBikes');
+const genderUsersRouter = require('./routes/bicycle/genderUsers');
+const wheelDiameterRouter = require('./routes/bicycle/wheelDiameterBikes');
+const bikesRouter = require('./routes/bicycle/Bikes');
+const rentsRouter = require('./routes/rent/rents');
+const dbConfig = require('./config/db')
 
 var app = express();
 const mongoose = require('mongoose')
@@ -24,6 +32,14 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api/colorbike', colorBikeRouter);
+app.use('/api/size_bike', sizeBikesRouter);
+app.use('/api/material_bike', materialBikesRouter);
+app.use('/api/type_bike', typeBikesRouter);
+app.use('/api/gender_users_bike', genderUsersRouter);
+app.use('/api/wheel_diameter', wheelDiameterRouter);
+app.use('/api/bike', bikesRouter);
+app.use('/api/rent', rentsRouter);
 //app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 //app.use('/contact', contactsRouter);
@@ -32,8 +48,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
     next(createError(404));
 });
-
-//mongoose.connect(dbConfig.mongoDBUrl);
 
 mongoose
     .connect(dbConfig.mongoDBUrl, {
